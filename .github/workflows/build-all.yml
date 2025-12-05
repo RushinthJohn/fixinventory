@@ -1,0 +1,44 @@
+name: Build All Services Workflow
+
+on: workflow_dispatch
+
+jobs:
+    fixcore:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build Docker Image
+              run: |
+                  docker build -f Dockerfile.fixcore -t ascintra-fixcore-${{ github.run_id }} .
+
+    fixmetrics:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build Docker Image
+              run: |
+                  docker build -f Dockerfile.fixmetrics -t ascintra-fixmetrics-${{ github.run_id }} .
+
+    fixshell:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build Docker Image
+              run: |
+                  docker build -f Dockerfile.fixshell -t ascintra-fixshell-${{ github.run_id }} .
+
+    fixworker:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build Docker Image
+              run: |
+                  docker build -f Dockerfile.fixworker -t ascintra-fixworker-${{ github.run_id }} .
