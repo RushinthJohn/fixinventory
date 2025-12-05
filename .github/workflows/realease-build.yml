@@ -1,0 +1,26 @@
+name: Build tagged version
+
+on:
+  push:
+    tags:
+      - "*.*.*.*.*" # Triggers on tags like 1.0.0.build.1, 1.0.1.build.2, etc.
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Get version
+              id: get-version
+              run: |
+                # Extract full tag (e.g., 1.0.0.build.1)
+                FULL_TAG=${GITHUB_REF#refs/tags/}
+                echo "version=$FULL_TAG" >> $GITHUB_OUTPUT
+                echo "tag=$FULL_TAG" >> $GITHUB_OUTPUT
+                echo "Version: $FULL_TAG"
+
+            - name: Build Docker Image
+              run: |
+                  docker build -f Dockerfile.${{ inputs.service }} -t ascintra-${{ inputs.service }}-${{ steps.get-version.outputs.version }} .
