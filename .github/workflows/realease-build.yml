@@ -6,9 +6,8 @@ on:
             - "*.*.*.*.*" # Triggers on tags like 1.0.0.build.1, 1.0.1.build.2, etc.
 
 jobs:
-    build:
+    git:
         runs-on: ubuntu-latest
-
         steps:
             - uses: actions/checkout@v4
 
@@ -21,18 +20,30 @@ jobs:
                   echo "tag=$FULL_TAG" >> $GITHUB_OUTPUT
                   echo "Version: $FULL_TAG"
 
+    fixcore:
+        runs-on: ubuntu-latest
+        steps:
             - name: Build fixcore
               run: |
                   docker build -f Dockerfile.fixcore -t ascintra-fixcore-${{ steps.get-version.outputs.version }} .
 
+    fixmetrics:
+        runs-on: ubuntu-latest
+        steps:
             - name: Build fixmetrics
               run: |
                   docker build -f Dockerfile.fixmetrics -t ascintra-fixmetrics-${{ steps.get-version.outputs.version }} .
 
+    fixshell:
+        runs-on: ubuntu-latest
+        steps:
             - name: Build fixshell
               run: |
                   docker build -f Dockerfile.fixshell -t ascintra-fixshell-${{ steps.get-version.outputs.version }} .
 
+    fixworker:
+        runs-on: ubuntu-latest
+        steps:
             - name: Build fixworker
               run: |
                   docker build -f Dockerfile.fixworker -t ascintra-fixworker-${{ steps.get-version.outputs.version }} .
