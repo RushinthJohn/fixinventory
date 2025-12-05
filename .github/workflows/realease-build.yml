@@ -22,28 +22,32 @@ jobs:
 
     fixcore:
         runs-on: ubuntu-latest
+        needs: git
         steps:
             - name: Build fixcore
               run: |
-                  docker build -f Dockerfile.fixcore -t ascintra-fixcore-${{ steps.get-version.outputs.version }} .
+                  docker build -f Dockerfile.fixcore -t ascintra-fixcore-${{ needs.git.outputs.version }} .
 
     fixmetrics:
         runs-on: ubuntu-latest
+        needs: git
         steps:
             - name: Build fixmetrics
               run: |
-                  docker build -f Dockerfile.fixmetrics -t ascintra-fixmetrics-${{ steps.get-version.outputs.version }} .
+                  docker build -f Dockerfile.fixmetrics -t ascintra-fixmetrics-${{ needs.git.outputs.version }} .
 
     fixshell:
         runs-on: ubuntu-latest
+        needs: git
         steps:
             - name: Build fixshell
               run: |
-                  docker build -f Dockerfile.fixshell -t ascintra-fixshell-${{ steps.get-version.outputs.version }} .
+                  docker build -f Dockerfile.fixshell -t ascintra-fixshell-${{ needs.git.outputs.version }} .
 
     fixworker:
         runs-on: ubuntu-latest
+        needs: git
         steps:
             - name: Build fixworker
               run: |
-                  docker build -f Dockerfile.fixworker -t ascintra-fixworker-${{ steps.get-version.outputs.version }} .
+                  docker build -f Dockerfile.fixworker -t ascintra-fixworker-${{ needs.git.outputs.version }} .
