@@ -1,0 +1,17 @@
+name: Pull and Test Images Workflow
+
+on:
+    image_version:
+        names:
+            - "arangodb"
+        versions:
+            - "3.*"
+
+jobs:
+    cve-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check new image
+              run: |
+                  echo "New image version available!"
+                  echo "Running checks..."
