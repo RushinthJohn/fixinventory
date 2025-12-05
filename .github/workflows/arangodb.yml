@@ -1,4 +1,4 @@
-name: Pull and Test Images Workflow
+name: ArangoDB Image Check
 
 on:
     image_version:

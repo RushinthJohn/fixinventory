@@ -1,4 +1,4 @@
-name: Pull and Test Images Workflow
+name: Postgres DB Check
 
 on:
     image_version:
