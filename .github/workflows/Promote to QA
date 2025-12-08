@@ -1,0 +1,32 @@
+name: Promote to QA
+
+on:
+    push:
+        tags:
+            - "*.*.*.*.*" # Triggers on tags like 1.0.0.build.1, 1.0.1.build.2, etc.
+
+jobs:
+    git:
+        runs-on: ubuntu-latest
+        outputs:
+            version: ${{ steps.get-version.outputs.version }}
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Get version
+              id: get-version
+              run: |
+                  # Extract full tag (e.g., 1.0.0.build.1)
+                  FULL_TAG=${GITHUB_REF#refs/tags/}
+                  echo "version=$FULL_TAG" >> $GITHUB_OUTPUT
+                  echo "tag=$FULL_TAG" >> $GITHUB_OUTPUT
+                  echo "Version: $FULL_TAG"
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v7
+              with:
+                title: Pull ${{ needs.git.outputs.version }} from main to QA
+                commit-message: Pull ${{ needs.git.outputs.version }} from main to QA
+                body: Pull ${{ needs.git.outputs.version }} from main to QA
+                branch: update-changelog
+                base: main
