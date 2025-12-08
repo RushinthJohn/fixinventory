@@ -34,7 +34,7 @@ jobs:
     create-pr:
         runs-on: ubuntu-latest
         permissions:
-            # contents: write # Needed for creating a new branch/commit
+            contents: write # Needed for creating a new branch/commit
             pull-requests: write # Needed for creating the pull request
         steps:
             - name: Checkout code
