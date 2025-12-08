@@ -160,7 +160,7 @@ Fix Inventory is an open-source project by Some Engineering. Contact us on [our 
 
 - using the dependency and access graph
 
-## 🙏 Contributing
+## 🙏 Contributing for Contributors
 
 Feel free to [open a GitHub issue](https://github.com/someengineering/fixinventory/issues/new) for small fixes and changes. For bigger changes and new plugins, please open an issue first to prevent duplicated work and to have the relevant discussions first.
 
