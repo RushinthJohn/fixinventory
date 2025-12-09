@@ -66,7 +66,7 @@ jobs:
 
                 if [ -n "$EXISTING_PR" ]; then
                     echo "Found existing open PR #$EXISTING_PR → closing it"
-                    gh pr close "$EXISTING_PR" --comment "Closing in favor of a new up-to-date PR" --delete-branch false
+                    gh pr close "$EXISTING_PR" --comment "Closing in favor of a new up-to-date PR"
                 else
                     echo "No existing open PR found"
                 fi
