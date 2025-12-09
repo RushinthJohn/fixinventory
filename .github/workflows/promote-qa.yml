@@ -6,7 +6,8 @@ on:
             - "*.*.*.*.*" # Triggers on tags like 1.0.0.build.1, 1.0.1.build.2, etc.
 
 permissions:
-    contents: write # Needed for creating a new branch/commit
+    actions: write # Needed for creating workflow runs
+    # contents: write # Needed for creating a new branch/commit
     pull-requests: write # Needed for creating the pull request
 
 jobs:
