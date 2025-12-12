@@ -1,5 +1,9 @@
 name: Promote to QA & Prod
 
+concurrency:
+  group: pr-promotion
+  cancel-in-progress: true
+
 on:
     push:
         tags:
